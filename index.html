@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KLAKSSONJOKI.ID</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Feather Icons -->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- MY STYLE -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- AlpineJS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- App -->
+    <script src="src/app.js" async></script>
+  </head>
+  <body>
+
+    <!-- Midtrans -->
+
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-3OQgvZJre6NVZOs2"></script>
+
+    <!-- Navbar Start -->
+
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo">klakksonjoki.<span>id</span></a>
+
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#cara">Joki</a>
+        <a href="#products">Harga</a>
+        <a href="#worker">Worker</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button"
+          >
+          <i data-feather="shopping-cart"></i
+        >
+      <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+      </a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- Search Form start -->
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here..." />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+      <!-- Search Form end -->
+
+      <!-- Shopping Cart start -->
+      <div class="shopping-cart">
+        <template x-for="(item,index) in $store.cart.items" x-keys="index">
+        <div class="cart-item">
+          <img :src="`img/products/${item.img}`" :alt="item.name" />
+          <div class="item-detail">
+            <h3 x-text="item.name"></h3>
+            <div class="item-price">
+              <span x-text="rupiah(item.price)"></span> &times;
+              <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+              <span x-text="item.quantity"></span>
+              <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+              <span x-text="rupiah(item.total)"></span>
+            </div>
+          </div>
+        </div>
+      </template>
+      <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">Cart is Empty</h4>
+      <h4 x-show="$store.cart.items.length">Total : <span x-text="rupiah($store.cart.total)"></span></h4>
+
+      <div class="form-container" x-show="$store.cart.items.length">
+        <form action="" id="checkoutForm">
+
+          <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+          <input type="hidden" name="total" x-model="$store.cart.total">
+
+          <h5>Customer Detail</h5>
+
+          <label for="name">
+            <span>Nickname</span>
+            <input type="text" name="name" id="name">
+          </label>
+          <label for="email">
+            <span>Email</span>
+            <input type="email" name="email" id="email">
+          </label>
+          <label for="password">
+            <span>Password</span>
+            <input type="text" name="phone" id="phone" autocomplete="off">
+          </label>
+          <label for="request">
+            <span>Request Hero</span>
+            <input type="text" name="request" id="request" autocomplete="off">
+          </label>
+          <label for="catatan">
+            <span>Catatan untuk penjoki</span>
+            <input type="text" name="catatan" id="catatan" autocomplete="off">
+          </label>
+
+          <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">Order</button>
+        </form>
+      </div>
+
+
+      </div>
+      
+      <!-- Shopping Cart end -->
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Hero Section start -->
+
+    <section class="hero" id="home">
+      <div class="mask-container">
+        <main class="content">
+          <h1>SERING KETEMU DARK SYSTEM? RANK NGESTUCK TERUS? <span>JOKI DI KLAKSSONJOKI.ID SOLUSINYA!</span></h1>
+          
+        </main>
+      </div>
+    </section>
+
+    <!-- Hero Section end -->
+
+    <!-- About Section start -->
+
+    <section id="about" class="about">
+      <h2><span>Tentang </span>Kami</h2>
+
+      <div class="row">
+        <div class="about-img">
+          <img src="img/tentangkami.jpg" alt="Tentang Kami" />
+        </div>
+
+        <div class="content">
+          <h3>Kenapa memilih Klakksonjoki?</h3>
+          <p>
+            Selamat datang di toko kami, tempat terbaik untuk meningkatkan pengalaman bermain Mobile Legends Anda! Kami menawarkan jasa joki Mobile Legends yang profesional dan terpercaya. Dengan tim joki berpengalaman dan memiliki skill setara pro player, kami siap membantu Anda mencapai peringkat tertinggi dengan cepat dan aman.
+
+          <p>
+             Kami menjamin keamanan akun Anda serta hasil yang memuaskan. Selain itu, kami juga menyediakan berbagai paket layanan yang fleksibel sesuai dengan kebutuhan dan anggaran Anda. Jangan lewatkan kesempatan untuk mendominasi medan pertempuran dan raih kemenangan gemilang bersama kami!
+          </p>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section end -->
+
+    <!-- Menu Section Start -->
+
+    <section id="cara" class="menu">
+      <h2><span>Langkah - Langkah</span> Joki</h2>
+      <p>
+        Berikut adalah langkah-langkah sederhana untuk Order Jasa Joki : <br>
+
+        1. Lengkapi Data Akun Joki Dengan Teliti (Pastikan data yang Anda masukkan sudah benar dan lengkap) <br>
+        2. Pilih Jenis Variant Joki  (Sesuaikan dengan kebutuhan Anda) <br>
+        3. Masukkan Jumlah Order Sesuai Tujuan Rank (Pastikan jumlah order sesuai dengan rank yang Anda inginkan) <br>
+        4. Klik Order Now & Lakukan Pembayaran (Tunggu konfirmasi dari kami dan orderan Anda akan segera diproses)
+      </p>
+
+      
+    </section>
+
+    <!-- Menu Section End -->
+
+    <!-- Products Section Start -->
+
+    <section class="products" id="products" x-data="products">
+      <h2>Pilih <span>Nominal</span> </h2>
+      <h2>
+        Joki Rank / Star
+      </h2>
+
+      <div class="row">
+        <template x-for="(item,index) in items" x-key="index">
+          <div class="product-card">
+            <div class="product-icons">
+              <a href="#" @click.prevent="$store.cart.add(item)">
+                Order
+              </a>
+              <!-- <a href="" class="item-detail-button">
+                <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="img/feather-sprite.svg#eye" />
+              </svg></a> -->
+            </div>
+            <div class="product-image">
+              <img :src="`img/products/${item.img}`" :alt="item.name" />
+            </div>
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+              </div>
+              <div class="product-price"><span x-text="rupiah(item.price)"></span></div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- Products Section End -->
+
+    <!-- Contact Section Start -->
+
+    <section id="worker" class="menu">
+      <h2><span>Worker</span></h2>
+
+      <div class="row">
+        <div class="menu-card">
+          <img src="img/menu/fedrick.jpg" alt="Espresso" class="menu-card-image" />
+          <h3 class="menu-card-title">- Fedrick -</h3>
+          <p class="menu-card-price">Owner of klakksonjoki.id & Worker</p>
+          <a href="" class="item-detail-button1"> <button>
+            Cari tahu lebih lanjut
+          </button>
+            </a> 
+        </div>
+
+        <div class="menu-card">
+          <img src="img/menu/jason.jpg" alt="Espresso" class="menu-card-image" />
+          <h3 class="menu-card-title">- Jason -</h3>
+          <p class="menu-card-price">Brand ambassador & Worker</p>
+          <a href="" class="item-detail-button2"> <button>
+            Cari tahu lebih lanjut 
+          </button> </a> 
+        </div>
+        <div class="menu-card">
+          <img src="img/menu/valentino.jpg" alt="Espresso" class="menu-card-image" />
+          <h3 class="menu-card-title">- Valentino -</h3>
+          <p class="menu-card-price">Worker</p>
+          <a href="" class="item-detail-button3"> <button>
+            Cari tahu lebih lanjut
+          </button> </a>
+        </div>
+        
+        <div class="menu-card">
+          <img src="img/menu/sean.jpg" alt="Sean" class="menu-card-image" />
+          <h3 class="menu-card-title">- Sean -</h3>
+          <p class="menu-card-price">Worker</p>
+          <a href="" class="item-detail-button4"> <button>
+            Cari tahu lebih lanjut
+          </button>
+          </a>
+        </div>
+
+        <div class="menu-card">
+          <img src="img/menu/winson.jpg" alt="Espresso" class="menu-card-image" />
+          <h3 class="menu-card-title">- Winson -</h3>
+          <p class="menu-card-price">Worker</p>
+          <a href="" class="item-detail-button5"> <button>
+            Cari tahu lebih lanjut
+          </button>
+        </div>
+  
+      </div>
+    </section>
+
+    <!-- Contact Section End -->
+
+    <!-- Footer Start -->
+    <footer>
+      <div class="socials">
+        <a href="https://www.instagram.com/klakssonjoki.id/"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#cara">Menu</a>
+        <a href="#products">Produk</a>
+        <a href="#worker">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by <a href="">WSNN</a>. | &copy; 2024.</p>
+      </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Modal Box Item Detail start -->
+    <div class="modal" id="item-detail-modal1">
+      <div class="modal-container">
+        <a href="" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/menu/fedrick.jpg" alt="Fedrick" class="orang"/>
+          <div class="product-content">
+            <h3>Fedrick Larsson <br>
+            Nickname : Hae Jun Woo <br>
+            Highest Rank : 222 <i data-feather="star"></i></h3>
+            
+        <img src="img/menu/fedrick (2).jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="item-detail-modal2">
+      <div class="modal-container">
+        <a href="" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/menu/jason.jpg" alt="Jason" class="orang"/>
+          <div class="product-content">
+            <h3>Jason Wen <br>
+            Nickname : [RRQ]@fedrick010806$ <br>
+            Highest Rank : 138<i data-feather="star"></i> </h3>
+            
+        <img src="img/menu/jason (2).jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="item-detail-modal3">
+      <div class="modal-container">
+        <a href="" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/menu/valentino.jpg" alt="Valentino" class="orang"/>
+          <div class="product-content">
+            <h3>Valentino Kiong <br>
+            Nickname : 周也的男朋友 <br>
+            Highest Rank : 164 <i data-feather="star"></i></h3>
+            
+        <img src="img/menu/valentino (2).jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="item-detail-modal4">
+      <div class="modal-container">
+        <a href="" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/menu/sean.jpg" alt="Sean" class="orang"/>
+          <div class="product-content">
+            <h3>Sean Lim <br>
+            Nickname : Kneegerina <br>
+            Highest Rank : 206 <i data-feather="star"></i></h3>
+            
+        <img src="img/menu/sean (2).jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="item-detail-modal5">
+      <div class="modal-container">
+        <a href="" class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+          <img src="img/menu/winson.jpg" alt="Winson"  class="orang"/>
+          <div class="product-content">
+            <h3>Winson <br>
+            Nickname : WSNN<br>
+            Highest Rank : 190 <i data-feather="star"></i></h3>
+
+            <img src="img/menu/winson (2)jpg.jpg" alt="">
+        
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Box Item Detail end -->
+
+    <!-- feather icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- My Javascript -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
