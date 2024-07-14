@@ -106,17 +106,6 @@ checkoutButton.addEventListener("click", async function (e) {
 
   // minta transaction token menggunakan ajax/fetch
 
-  try {
-    const response = await fetch("php/placeOrder.php", {
-      method: "POST",
-      body: data,
-    });
-    const token = await response.text();
-
-    window.snap.pay(token);
-  } catch (err) {
-    console.log(err.message);
-  }
 });
 
 // format pesan whatsapp
