@@ -253,7 +253,7 @@ body {
 /* Hero Section */
 
 .hero {
-  min-height: 125vh;
+  min-height: 140vh;
   display: flex;
   align-items: center;
   background-image: url("../img/logoml.jpg");
@@ -292,7 +292,7 @@ body {
   width: 100%;
   text-align: center;
   position: fixed;
-  top: 110px;
+  top: 95px;
 }
 
 .hero .content h1 {
@@ -748,6 +748,7 @@ footer .credit a {
 
   .product-content img {
     height: 25vh;
+    width: 80%;
   }
 
   .orang {
@@ -760,5 +761,9 @@ footer .credit a {
 @media (max-width: 450px) {
   html {
     font-size: 55%;
+  }
+
+  .product-content img {
+    width: 80%;
   }
 }
