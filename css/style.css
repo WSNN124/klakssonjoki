@@ -395,8 +395,49 @@ body {
 
 .products .product-card {
   text-align: center;
-  border: 1px solid #666;
+  position: relative;
   padding: 2rem;
+  background: black;
+}
+
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+.products .product-card::after , .products .product-card::before{
+  --angle:0deg;
+content: "";
+width: 100%;
+height: 100%;
+position: absolute;
+background-image: conic-gradient(from var(--angle),red,blue,yellow,rgb(45, 218, 29),#ff0095);
+top: 50%;
+bottom: 50%;
+translate: -50% -50%;
+z-index: -1;
+padding: 3px;
+border-radius: 10px;
+animation: 3s spin linear infinite;
+
+}
+
+.products .product-card::before {
+  filter: blur(1.5rem);
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  from {
+--angle : 0deg;
+  }
+
+  to {
+--angle : 360deg;
+  }
 }
 
 .products .product-icons {
